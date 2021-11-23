@@ -1,0 +1,35 @@
+.navbar {
+  width: 100%;
+  background-color: #effaf0;
+  padding: 20px 10px;
+  box-sizing: border-box;
+
+  ul {
+    display: flex;
+    margin: 0 auto;
+    max-width: 960px;
+    align-items: center;
+  }
+
+  .title {
+    margin-right: auto;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 1.2em;
+    text-shadow: 2px 2px 20px #60d169;
+
+    &:hover {
+      text-shadow: 2px 2px 20px #0ea01a;
+    }
+  }
+
+  button,
+  a {
+    margin-left: 16px;
+  }
+
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+}
