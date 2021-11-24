@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { projectAuth } from "../firebase/config";
+import { authCodes } from "../variables/variables";
 import { useAuthContext } from "./useAuthContext";
 
 export const useSignup = () => {
@@ -28,7 +29,7 @@ export const useSignup = () => {
       await response.user.updateProfile({ displayName });
 
       //dispatch login action
-      dispatch({ type: "LOG_IN", payload: response.user });
+      dispatch({ type: authCodes.log_in, payload: response.user });
 
       if (!isCancelled) {
         setIsPending(false);
