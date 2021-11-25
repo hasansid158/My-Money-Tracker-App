@@ -27,6 +27,13 @@ const firestoreReducer = (state, action) => {
         success: false,
         error: action.payload,
       };
+    case docTransactionCodes.deleted_doc:
+      return {
+        isPending: false,
+        document: null,
+        success: true,
+        error: null,
+      };
     default:
       return state;
   }
@@ -47,12 +54,12 @@ export const useFirestore = (collection) => {
   };
 
   //add documents
-  const addDocument = async ({ ...doc }) => {
+  const addDocument = async (doc) => {
     const createdAd = timestamp.fromDate(new Date());
     dispatch({ type: docTransactionCodes.is_pending });
 
     try {
-      const addedDoc = await ref.add({ doc, createdAd: createdAd });
+      const addedDoc = await ref.add({ ...doc, createdAd: createdAd });
       dispatchIfNotCancelled({
         type: docTransactionCodes.added_docs,
         payload: addedDoc,
@@ -66,7 +73,20 @@ export const useFirestore = (collection) => {
   };
 
   //delete document
-  const deleteDocument = async (id) => {};
+  const deleteDocument = async (id) => {
+    dispatch({ type: docTransactionCodes.is_pending });
+    try {
+      await ref.doc(id).delete();
+      dispatchIfNotCancelled({
+        type: docTransactionCodes.deleted_doc,
+      });
+    } catch (error) {
+      dispatchIfNotCancelled({
+        type: docTransactionCodes.error,
+        payload: "Could not delete the document.",
+      });
+    }
+  };
 
   useEffect(() => {
     return () => setIsCancelled(true);

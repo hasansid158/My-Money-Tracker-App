@@ -12,10 +12,6 @@ export default function Signup() {
     e.preventDefault();
 
     signup(email, passowrd, displayName);
-
-    setDisplayName("");
-    setPassword("");
-    setEmail("");
   };
 
   return (

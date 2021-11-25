@@ -11,9 +11,6 @@ export default function Login() {
   const submitHandler = (e) => {
     e.preventDefault();
     login(email, password);
-
-    setEmail("");
-    setPassword("");
   };
 
   return (

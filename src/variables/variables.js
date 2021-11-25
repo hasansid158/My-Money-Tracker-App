@@ -8,4 +8,5 @@ export const docTransactionCodes = {
   is_pending: "IS_PENDING",
   added_docs: "ADDED_DOC",
   error: "ERROR",
+  deleted_doc: "DELETED_DOC"
 };
