@@ -9,10 +9,10 @@ import TransactionForm from "./TransactionForm";
 export default function Home() {
   const { user } = useAuthContext();
   const { documents, error } = useCollection(
-    'transactions', 
+    "transactions",
     ["uid", "==", user.uid],
     ["createdAd", "desc"]
-    );
+  );
 
   return (
     <div className={styles.container}>
